@@ -90,6 +90,21 @@ public final class CourseInfo implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-
+        dest.writeString(mCourseId);
+        dest.writeString(mTitle);
+        dest.writeTypedList(mModules);
     }
+
+    public static final Parcelable.Creator<CourseInfo> CREATOR =
+            new Parcelable.Creator<CourseInfo>() {
+                @Override
+                public CourseInfo createFromParcel(Parcel source) {
+                    return new CourseInfo(source);
+                }
+
+                @Override
+                public CourseInfo[] newArray(int size) {
+                    return new CourseInfo[size];
+                }
+            };
 }
