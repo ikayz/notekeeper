@@ -40,8 +40,9 @@ public class NoteActivity extends AppCompatActivity {
     }
 
     private void displayNotes(Spinner spinnerCourses, EditText textNoteTitle, EditText textNoteText) {
-
-
+        List<CourseInfo> courses = DataManager.getInstance().getCourses();
+        int courseIndex = courses.indexOf(mNote.getCourse());
+        spinnerCourses.setSelection(courseIndex);
         textNoteTitle.setText(mNote.getTitle());
         textNoteText.setText(mNote.getText());
     }
