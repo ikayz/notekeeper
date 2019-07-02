@@ -87,5 +87,6 @@ public class NoteActivity extends AppCompatActivity {
         String text = "Checkout what I learned in the Pluralsight course \"" +
                 course.getTitle() + "\"\n" + mTextNoteText.getText().toString();
         Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("message/rfc2822");
     }
 }
