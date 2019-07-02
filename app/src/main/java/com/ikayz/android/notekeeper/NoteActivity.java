@@ -18,6 +18,7 @@ import java.util.List;
 public class NoteActivity extends AppCompatActivity {
     public static final String NOTE_INFO = "com.ikayz.android.notekeeper.NOTE_INFO";
     private NoteInfo mNote;
+    private boolean mIsNewNote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +36,9 @@ public class NoteActivity extends AppCompatActivity {
         readDisplayStateValues();
         EditText textNoteTitle = (EditText) findViewById(R.id.text_note_title);
         EditText textNoteText = (EditText) findViewById(R.id.text_note_text);
-        
-        displayNotes(spinnerCourses, textNoteTitle, textNoteText);
+
+        if(!mIsNewNote)
+            displayNotes(spinnerCourses, textNoteTitle, textNoteText);
     }
 
     private void displayNotes(Spinner spinnerCourses, EditText textNoteTitle, EditText textNoteText) {
@@ -50,6 +52,7 @@ public class NoteActivity extends AppCompatActivity {
     private void readDisplayStateValues() {
         Intent intent = getIntent();
         mNote = ((Intent) intent).getParcelableExtra(NOTE_INFO);
+        mIsNewNote = mNote == null;
     }
 
     @Override
