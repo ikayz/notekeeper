@@ -88,5 +88,7 @@ public class NoteActivity extends AppCompatActivity {
                 course.getTitle() + "\"\n" + mTextNoteText.getText().toString();
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("message/rfc2822");
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        intent.putExtra(Intent.EXTRA_TEXT, text);
     }
 }
