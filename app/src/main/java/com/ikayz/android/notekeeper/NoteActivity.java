@@ -2,11 +2,8 @@ package com.ikayz.android.notekeeper;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -16,8 +13,10 @@ import android.widget.Spinner;
 import java.util.List;
 
 public class NoteActivity extends AppCompatActivity {
-    public static final String NOTE_INFO = "com.ikayz.android.notekeeper.NOTE_INFO";
+    public static final String NOTE_POSITION = "com.ikayz.android.notekeeper.NOTE_POSITION";
+    public static final int POSITION_NOT_SET = -1;
     private NoteInfo mNote;
+    private boolean mIsNewNote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +34,9 @@ public class NoteActivity extends AppCompatActivity {
         readDisplayStateValues();
         EditText textNoteTitle = (EditText) findViewById(R.id.text_note_title);
         EditText textNoteText = (EditText) findViewById(R.id.text_note_text);
-        
-        displayNotes(spinnerCourses, textNoteTitle, textNoteText);
+
+        if(!mIsNewNote)
+            displayNotes(spinnerCourses, textNoteTitle, textNoteText);
     }
 
     private void displayNotes(Spinner spinnerCourses, EditText textNoteTitle, EditText textNoteText) {
@@ -49,7 +49,10 @@ public class NoteActivity extends AppCompatActivity {
 
     private void readDisplayStateValues() {
         Intent intent = getIntent();
-        mNote = ((Intent) intent).getParcelableExtra(NOTE_INFO);
+        int position = ((Intent) intent).getIntExtra(NOTE_POSITION, POSITION_NOT_SET);
+        mIsNewNote = position == POSITION_NOT_SET;
+        if(!mIsNewNote)
+            mNote = DataManager.getInstance().getNotes().get(position);
     }
 
     @Override
