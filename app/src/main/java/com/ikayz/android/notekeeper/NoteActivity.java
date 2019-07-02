@@ -90,5 +90,6 @@ public class NoteActivity extends AppCompatActivity {
         intent.setType("message/rfc2822");
         intent.putExtra(Intent.EXTRA_SUBJECT, subject);
         intent.putExtra(Intent.EXTRA_TEXT, text);
+        startActivity(intent);
     }
 }
