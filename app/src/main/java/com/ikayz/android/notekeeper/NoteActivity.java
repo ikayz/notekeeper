@@ -42,6 +42,12 @@ public class NoteActivity extends AppCompatActivity {
             displayNotes(mSpinnerCourses, mTextNoteTitle, mTextNoteText);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        saveNote();
+    }
+
     private void displayNotes(Spinner spinnerCourses, EditText textNoteTitle, EditText textNoteText) {
         List<CourseInfo> courses = DataManager.getInstance().getCourses();
         int courseIndex = courses.indexOf(mNote.getCourse());
