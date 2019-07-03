@@ -35,6 +35,12 @@ public class NoteListActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mAdapterNotes.notifyDataSetChanged();
+    }
+
     private void initializeDisplayContent() {
         final ListView listNotes = (ListView) findViewById(R.id.list_notes);
         List<NoteInfo> notes = DataManager.getInstance().getNotes();
