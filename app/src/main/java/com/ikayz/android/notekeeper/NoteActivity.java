@@ -66,8 +66,14 @@ public class NoteActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int position = ((Intent) intent).getIntExtra(NOTE_POSITION, POSITION_NOT_SET);
         mIsNewNote = position == POSITION_NOT_SET;
-        if(!mIsNewNote)
+        if(mIsNewNote) {
+            createNewNote();
+        } else {
             mNote = DataManager.getInstance().getNotes().get(position);
+        }
+    }
+
+    private void createNewNote() {
     }
 
     @Override
