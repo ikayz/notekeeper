@@ -21,6 +21,7 @@ public class NoteActivity extends AppCompatActivity {
     private EditText mTextNoteTitle;
     private EditText mTextNoteText;
     private int mNotePosition;
+    private boolean mIsCancelling;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +100,8 @@ public class NoteActivity extends AppCompatActivity {
             sendEmail();
             return true;
         } else if (id == R.id.action_cancel){
-            boolean isCancelling = true;
+            mIsCancelling = true;
+            finish();
         }
 
         return super.onOptionsItemSelected(item);
