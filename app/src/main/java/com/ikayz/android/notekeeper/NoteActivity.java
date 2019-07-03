@@ -74,6 +74,8 @@ public class NoteActivity extends AppCompatActivity {
     }
 
     private void createNewNote() {
+        DataManager dm = DataManager.getInstance();
+        int newNote = dm.createNewNote();
     }
 
     @Override
