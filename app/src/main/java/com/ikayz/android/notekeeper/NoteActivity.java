@@ -22,6 +22,7 @@ public class NoteActivity extends AppCompatActivity {
     private EditText mTextNoteText;
     private int mNotePosition;
     private boolean mIsCancelling;
+    private String mOriginalNoteCourseId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,7 @@ public class NoteActivity extends AppCompatActivity {
     private void saveOriginalNoteValues() {
         if (mIsNewNote)
             return;
-        String originalNoteCourseId = mNote.getCourse().getCourseId();
+        mOriginalNoteCourseId = mNote.getCourse().getCourseId();
     }
 
     @Override
