@@ -15,6 +15,9 @@ import java.util.List;
 public class NoteActivity extends AppCompatActivity {
     public static final String NOTE_POSITION = "com.ikayz.android.notekeeper.NOTE_POSITION";
     public static final int POSITION_NOT_SET = -1;
+    private static final String ORIGINAL_NOTE_COURSE_ID = "com.ikayz.android.notekeeper.ORIGINAL_NOTE_COURSE_ID";
+    private static final String ORIGINAL_NOTE_TITLE = "com.ikayz.android.notekeeper.ORIGINAL_NOTE_TITLE";
+    private static final String ORIGINAL_NOTE_TEXT = "com.ikayz.android.notekeeper.ORIGINAL_NOTE_TEXT";
     private NoteInfo mNote;
     private boolean mIsNewNote;
     private Spinner mSpinnerCourses;
