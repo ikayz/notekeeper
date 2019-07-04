@@ -51,6 +51,8 @@ public class NoteActivity extends AppCompatActivity {
         if (mIsNewNote)
             return;
         mOriginalNoteCourseId = mNote.getCourse().getCourseId();
+        String originalNoteTitle = mNote.getTitle();
+        String originalNoteText = mNote.getText();
     }
 
     @Override
