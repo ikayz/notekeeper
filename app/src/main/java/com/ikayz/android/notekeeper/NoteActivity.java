@@ -63,6 +63,8 @@ public class NoteActivity extends AppCompatActivity {
         if (mIsCancelling) {
             if(mIsNewNote) {
                 DataManager.getInstance().removeNote(mNotePosition);
+            } else {
+                storePreviousNoteValues();
             }
         } else {
             saveNote();
