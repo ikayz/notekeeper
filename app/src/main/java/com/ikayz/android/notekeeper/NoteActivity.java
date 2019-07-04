@@ -43,7 +43,7 @@ public class NoteActivity extends AppCompatActivity {
         if(savedInstanceState == null) {
             saveOriginalNoteValues();
         } else {
-            restoreOriginalNoteValues();
+            restoreOriginalNoteValues(savedInstanceState);
         }
 
         mTextNoteTitle = (EditText) findViewById(R.id.text_note_title);
