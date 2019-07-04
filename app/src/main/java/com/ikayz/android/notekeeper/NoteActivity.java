@@ -47,7 +47,9 @@ public class NoteActivity extends AppCompatActivity {
     }
 
     private void saveOriginalNoteValues() {
-
+        if (mIsNewNote)
+            return;
+        String originalNoteCourseId = mNote.getCourse().getCourseId();
     }
 
     @Override
