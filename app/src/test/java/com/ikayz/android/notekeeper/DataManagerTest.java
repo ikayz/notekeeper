@@ -12,5 +12,8 @@ public class DataManagerTest {
         final CourseInfo course = dm.getCourse("android_async");
         final String noteTitle = "Text note title";
         final String noteText = "This is the body text of the test note";
+
+        int noteIndex = dm.createNewNote();
+        NoteInfo newNote = dm.getNotes().get(noteIndex);
     }
 }
