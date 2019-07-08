@@ -8,7 +8,8 @@ public class DataManagerTest {
 
     @Test
     public void createNewNote() throws Exception {
-        final CourseInfo course = DataManager.getInstance().getCourse("android_async");
+        DataManager dm = DataManager.getInstance();
+        final CourseInfo course = dm.getCourse("android_async");
         final String noteTitle = "Text note title";
         final String noteText = "This is the body text of the test note";
     }
