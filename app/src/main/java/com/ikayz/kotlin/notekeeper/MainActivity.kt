@@ -10,6 +10,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.core.view.accessibility.AccessibilityEventCompat.setAction
 import com.ikayz.kotlin.notekeeper.databinding.ActivityMainBinding
@@ -31,7 +32,10 @@ class MainActivity : AppCompatActivity() {
         val adapterCourses = ArrayAdapter<CourseInfo>(this,
             android.R.layout.simple_spinner_item,
             dm.courses.values.toList())
+        adapterCourses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
+        val spinnerCourses: Spinner = findViewById(R.id.spinner_courses)
+        spinnerCourses.adapter = adapterCourses
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
