@@ -1,12 +1,18 @@
 package com.ikayz.kotlin.notekeeper
 
-class DataManager {
+object DataManager {
     val courses = HashMap<String, CourseInfo>()
     val notes = ArrayList<NoteInfo>()
 
     // Runs automatically to execute code
     init {
         initializeCourses()
+        intializeNotes()
+
+    }
+
+    private fun intializeNotes() {
+
     }
 
     private fun initializeCourses() {
@@ -17,6 +23,9 @@ class DataManager {
         courses.set(course.courseId, course)
 
         course = CourseInfo(title = "Java Fundamentals: The Java Language", courseId = "java_lang")
+        courses.set(course.courseId, course)
+
+        course = CourseInfo(title = "Java Fundamentals: The Core Platform", courseId = "java_core")
         courses.set(course.courseId, course)
     }
 }
