@@ -10,6 +10,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
+import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.core.view.accessibility.AccessibilityEventCompat.setAction
@@ -20,12 +21,12 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    private var notePostion = POSITION_NOT_SET
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         setSupportActionBar(binding.toolbar)
 
         val adapterCourses = ArrayAdapter<CourseInfo>(this,
@@ -35,6 +36,20 @@ class MainActivity : AppCompatActivity() {
 
         val spinnerCourses: Spinner = findViewById(R.id.spinner_courses)
         spinnerCourses.adapter = adapterCourses
+        notePostion = intent.getIntExtra(EXTRA_NOTE_POSITION, POSITION_NOT_SET)
+
+        if (notePostion != POSITION_NOT_SET)
+            displayNote()
+    }
+
+    private fun displayNote() {
+        val note = DataManager.notes[notePostion]
+        val textNoteTitle = findViewById<EditText>(R.id.text_note_title)
+        val textNoteText = findViewById<EditText>(R.id.text_note_text)
+
+        textNoteTitle.setText(note.title)
+        textNoteText.setText(note.text)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
