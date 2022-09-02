@@ -38,8 +38,9 @@ class MainActivity : AppCompatActivity() {
         spinnerCourses.adapter = adapterCourses
         notePostion = intent.getIntExtra(EXTRA_NOTE_POSITION, POSITION_NOT_SET)
 
-        if (notePostion != POSITION_NOT_SET)
+        if (notePostion != POSITION_NOT_SET) {
             displayNote()
+        }
     }
 
     private fun displayNote() {
@@ -50,6 +51,9 @@ class MainActivity : AppCompatActivity() {
         textNoteTitle.setText(note.title)
         textNoteText.setText(note.text)
 
+        val coursePosition = DataManager.courses.values.indexOf(note.course)
+        val spinnerCourses = findViewById<Spinner>(R.id.spinner_courses)
+        spinnerCourses.setSelection(coursePosition)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
