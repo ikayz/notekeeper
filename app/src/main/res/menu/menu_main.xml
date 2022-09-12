@@ -7,7 +7,7 @@
         android:icon="@drawable/ic_next"
         android:orderInCategory="100"
         android:title="Next"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom|withText" />
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="101"
