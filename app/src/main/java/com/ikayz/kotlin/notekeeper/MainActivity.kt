@@ -33,7 +33,6 @@ class MainActivity : AppCompatActivity() {
             android.R.layout.simple_spinner_item,
             DataManager.courses.values.toList())
         adapterCourses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
         val spinnerCourses: Spinner = findViewById(R.id.spinner_courses)
         spinnerCourses.adapter = adapterCourses
         notePostion = intent.getIntExtra(EXTRA_NOTE_POSITION, POSITION_NOT_SET)
@@ -79,5 +78,34 @@ class MainActivity : AppCompatActivity() {
     private fun moveNext() {
         ++notePostion
         displayNote()
+        invalidateOptionsMenu()
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+
+        if (notePostion >= DataManager.notes.lastIndex) {
+            val menuItem = menu?.findItem(R.id.action_next)
+            if (menuItem != null) {
+                menuItem.icon = getDrawable(R.drawable.ic_block_white)
+                menuItem.isEnabled = false
+            }
+        }
+        return super.onPrepareOptionsMenu(menu)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        saveNote()
+    }
+
+    private fun saveNote() {
+        val note = DataManager.notes[notePostion]
+        val textNoteTitle = findViewById<EditText>(R.id.text_note_title)
+        val textNoteText = findViewById<EditText>(R.id.text_note_text)
+        val spinnerCourses: Spinner = findViewById(R.id.spinner_courses)
+
+        note.title = textNoteTitle.text.toString()
+        note.text = textNoteText.text.toString()
+        note.course = spinnerCourses.selectedItem as CourseInfo
     }
 }
