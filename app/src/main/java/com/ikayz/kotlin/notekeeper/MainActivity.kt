@@ -1,21 +1,14 @@
 package com.ikayz.kotlin.notekeeper
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
-import android.widget.TextView
-import androidx.core.view.accessibility.AccessibilityEventCompat.setAction
 import com.ikayz.kotlin.notekeeper.databinding.ActivityMainBinding
-import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,7 +28,8 @@ class MainActivity : AppCompatActivity() {
         adapterCourses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         val spinnerCourses: Spinner = findViewById(R.id.spinner_courses)
         spinnerCourses.adapter = adapterCourses
-        notePostion = intent.getIntExtra(EXTRA_NOTE_POSITION, POSITION_NOT_SET)
+        notePostion = savedInstanceState?.getInt(NOTE_POSITION, POSITION_NOT_SET) ?:
+            intent.getIntExtra(NOTE_POSITION, POSITION_NOT_SET)
 
         if (notePostion != POSITION_NOT_SET) {
             displayNote()
@@ -94,6 +88,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return super.onPrepareOptionsMenu(menu)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(NOTE_POSITION, notePostion)
     }
 
     override fun onPause() {
